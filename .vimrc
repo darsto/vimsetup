@@ -30,6 +30,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kris2k/a.vim'
 Plugin 'valloric/youcompleteme'
+Plugin 'Conque-GDB'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 filetype plugin indent on
