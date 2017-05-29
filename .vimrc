@@ -4,8 +4,6 @@ filetype off
 syntax on
 colorscheme hipster
 
-let g:clang_library_path='/usr/lib/llvm-3.5/lib/libclang.so.1'
-
 " Show line numbers
 set number
 
@@ -27,9 +25,6 @@ set cursorline
 set tabstop=4 shiftwidth=4 expandtab
 
 syntax on
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
-hi Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey
-hi! link CursorLine Visual
 
 " 256 colors
 let &t_Co=256
@@ -43,35 +38,23 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kris2k/a.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-" Plugin 'kshenoy/vim-signature'
-" Plugin 'easymotion/vim-easymotion'
-" Plugin 'xolox/vim-easytags'
-" Plugin 'taglist.vim'
-" Plugin 'xolox/vim-misc'
-Plugin 'lifepillar/vim-cheat40'
-" Plugin 'troydm/zoomwintab.vim'
-" Plugin 'wesQ3/vim-windowswap'
-" Plugin 'c.vim'
+Plugin 'airblade/vim-gitgutter' " left git margin
+Plugin 'majutsushi/tagbar' " declarations view 
+Plugin 'kshenoy/vim-signature' " marks column
+Plugin 'lifepillar/vim-cheat40' " cheatsheet
+Plugin 'troydm/zoomwintab.vim' " <C-W>O will toggle fullscreen
+Plugin 'wesQ3/vim-windowswap' " swap windows with <leader>ww
 
 call vundle#end()
 filetype plugin indent on
 
-" Fix problem with vim-airline not showing the status line until you split
-set laststatus=2
-
 " Enable mouse integration
 set mouse=a
 
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1
-
-let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+let g:clang_library_path='/usr/lib/llvm-3.5/lib/libclang.so.1'
 
 map [b :bp<CR>
 map ]b :bn<CR>
@@ -89,17 +72,17 @@ set wildmode=longest,list
 set hlsearch
 
 " c folding from c.vim
-" set foldmethod=syntax
+set foldmethod=syntax
 
 " unfold by default
-" autocmd FileType * exe "normal zR"
+autocmd FileType * exe "normal zR"
 
 " highlight word under cursor
 nnoremap <C-F> *#
 inoremap <C-F> <C-o>*<C-o>#
 
 " Go to mark
-" nnoremap k `
+nnoremap k `
 
 " More friendly C-Arrow word navigation
 nnoremap <C-Left> <C-S-Left>
@@ -132,6 +115,8 @@ nnoremap ; :
 nnoremap <BS> i<BS>
 nnoremap <DEL> i<DEL>
 
-cnoreabbrev taglist TlistToggle
+cnoreabbrev taglist TagbarToggle
+command! BW :bn|:bd#
+cnoreabbrev bw BW
 
 source ~/.vim/plugin/mksession.vim
